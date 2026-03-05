@@ -9,11 +9,11 @@ datasource db {
 
 model User {
   id            String    @id @default(cuid())
-  email         String    @unique
+  email         String    @unique //Can only be one 
   username      String?   @unique
   emailVerified DateTime?
   image         String?
-  createdAt     DateTime  @default(now())
+  createdAt     DateTime  @default(now()) //Generates current time stamp
   accounts      Account[]
   sessions      Session[]
   scores        Score[]
@@ -21,7 +21,7 @@ model User {
 }
 
 model Account {
-  id                String  @id @default(cuid())
+  id                String  @id @default(cuid()) //auto incremeted id
   userId            String
   type              String
   provider          String
@@ -29,11 +29,11 @@ model Account {
   refresh_token     String?
   access_token      String?
   expires_at        Int?
-  token_type        String?
+  token_type        String? //"?" means optional
   scope             String?
   id_token          String?
   session_state     String?
-  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade) //relates to user model, points to id, account is deleted then user is deleted as well
 
   @@unique([provider, providerAccountId])
 }
