@@ -13,6 +13,7 @@ export default function Home() {
         A fun game where you guess which spotify artist gets more monthly
         streams
       </h3>
+      <h1> OUTSTREAMED</h1>
     </div>
   );
 }
